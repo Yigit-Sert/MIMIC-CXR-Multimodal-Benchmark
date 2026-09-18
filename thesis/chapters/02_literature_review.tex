@@ -1,0 +1,28 @@
+\chapter{Literature Review}
+\label{ch:literature_review}
+
+\section{MIMIC-CXR Dataset and Labeling Ontology}
+The MIMIC-CXR dataset contains 377,110 chest radiographs associated with 227,835 radiology studies across 65,379 unique patients \cite{johnson2019mimic}. Pathological labels were automatically extracted using rule-based NLP taggers such as CheXpert \cite{irvin2019chexpert} and NegBio.
+
+\section{Text-Only Analysis and Data Leakage}
+Textual analysis has evolved from rule-based matchers to domain-specific Transformers (\textit{ClinicalBERT} \cite{alsentzer2019publicly}, \textit{CheXbert} \cite{smit2020chexbert}) and Medical LLMs (\textit{MAPLEZ} \cite{maplez2024llm}).
+
+While text models produce high AUROC metrics, because target labels are extracted from the text itself, this introduces a well-documented \textit{"Data Leakage / Proxy-Label Ambiguity"}. Evaluation metrics for generated text have also shifted from superficial n-gram metrics (BLEU/ROUGE) to clinical metrics such as \textit{GREEN} \cite{ostmeier2024green} and \textit{RadGraph F1}.
+
+\section{Image-Only Analysis and Shortcut Learning}
+Image-only deep learning models employ CNNs (\textit{DenseNet-121} \cite{rajpurkar2017chexnet}, \textit{ResNet-50}) and Vision Transformers (\textit{ViT}, \textit{Swin Transformer}).
+
+\subsection{Shortcut Learning and Spurious Correlations}
+A major vulnerability of vision models is their susceptibility to shortcut learning. For instance, classifiers frequently rely on external artifacts (e.g., chest drain tubes or support wires) to diagnose pneumothorax rather than identifying pleural cavity air accumulation.
+
+\subsection{Explainability Mechanisms (XAI)}
+CNN models utilize Gradient-weighted Class Activation Mapping (\textit{Grad-CAM}) for heatmaps, whereas Vision Transformers leverage attention maps to provide spatial saliency.
+
+\section{Multimodal Fusion and Vision-Language Pretraining}
+Multimodal architectures integrate visual and textual information via fusion mechanisms or Vision-Language Pretraining (VLP).
+
+\subsection{Fusion Strategies}
+Early fusion applies cross-attention at intermediate feature layers, whereas late fusion combines independent modality prediction probabilities.
+
+\subsection{Contrastive Learning and VLP}
+Adapting CLIP-style contrastive learning to medicine (\textit{ConVIRT} \cite{zhang2022contrastive}, \textit{BioViL} \cite{boecking2022making}, \textit{RadAlign} \cite{radalign2025advancing}) aligns image and report representations in a shared embedding space using InfoNCE loss. This enables zero-shot classification without manual label dependency and facilitates radiology report generation (RRG).

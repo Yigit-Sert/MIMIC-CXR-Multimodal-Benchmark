@@ -1,0 +1,28 @@
+\chapter{Dataset and Exploratory Data Analysis}
+\label{ch:dataset_and_eda}
+
+\section{Dataset Overview}
+The dataset downloaded via Kagglehub (\texttt{simhadrisadaram/mimic-cxr-dataset}) was automatically indexed. A total of **261,137 chest radiographs** and metadata files (\texttt{mimic\_cxr\_aug\_train.csv}, \texttt{mimic\_cxr\_aug\_validate.csv}) were identified.
+
+\section{3-Pillar Exploratory Data Analysis}
+
+\subsection{Pillar 1: Image-Only Analysis}
+The visual inspection yielded the following findings:
+\begin{itemize}
+    \item \textbf{Resolution \& Aspect Ratio:} Images exhibit square aspect ratios ($Aspect\ Ratio = 1.0$) with resolution clusters around $512 \times 512$ pixels.
+    \item \textbf{Pixel Intensity:} Mean brightness centers at $125-130$ (0-255 scale) with contrast standard deviation around $74$.
+    \item \textbf{Visual Artifacts:} Sample grids confirm the presence of pacemakers, ECG wires, and chest drain tubes.
+\end{itemize}
+
+\subsection{Pillar 2: Text and Label Analysis}
+Due to long-tail class imbalance across the 14 CheXpert categories, the study focuses on the **Core 5 Clinical Pathologies**:
+\begin{enumerate}
+    \item Atelectasis
+    \item Cardiomegaly
+    \item Consolidation
+    \item Edema
+    \item Pleural Effusion
+\end{enumerate}
+
+\subsection{Pillar 3: Multimodal \& Cross-Modal Analysis}
+Cross-tabulation of view positions (PA vs. AP) demonstrates that AP (Anteroposterior) views—commonly performed on bedridden ICU patients—have significantly higher rates of Edema and Support Devices compared to PA views, corroborating the risk of shortcut learning.

@@ -1,0 +1,62 @@
+\documentclass[12pt,a4paper]{report}
+
+% --- Required Packages ---
+\usepackage[utf8]{utf8}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+
+% --- Page Geometry ---
+\geometry{
+    a4paper,
+    left=30mm,
+    right=25mm,
+    top=25mm,
+    bottom=25mm
+}
+
+% --- Hyperlink Settings ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue,
+    pdftitle={MIMIC-CXR Comparative Multimodal Analysis},
+}
+
+\begin{document}
+
+% --- Front Matter ---
+\title{\textbf{Comparative Evaluation of Visual, Textual, and Multimodal Modeling Approaches on the MIMIC-CXR Dataset}}
+\author{Master's / Ph.D. Thesis}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\newpage
+
+% --- Modular Chapter Includes ---
+\include{chapters/01_introduction}
+\include{chapters/02_literature_review}
+\include{chapters/03_dataset_and_eda}
+\include{chapters/04_methodology}
+\include{chapters/05_experimental_results}
+\include{chapters/06_conclusion}
+
+% --- References ---
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

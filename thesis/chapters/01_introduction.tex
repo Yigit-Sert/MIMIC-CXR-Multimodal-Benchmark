@@ -1,0 +1,30 @@
+\chapter{Introduction and Motivation}
+\label{ch:introduction}
+
+\section{Problem Statement and Background}
+Medical imaging systems and artificial intelligence (AI) have become essential components of modern clinical radiology workflows. Chest Radiography (CXR) is the most frequently performed diagnostic imaging modality worldwide. Given the high patient volume and severe radiologist burnout, automated computer-aided diagnostic systems have become a major clinical imperative.
+
+The release of the MIMIC-CXR dataset \cite{johnson2019mimic} by BIDMC and MIT PhysioNet has served as a benchmark for biomedical AI research. It couples chest radiographs with free-text radiology reports, enabling comprehensive multi-modal study.
+
+However, existing literature reveals critical vulnerabilities across single-modality and multi-modality modeling paradigms:
+\begin{enumerate}
+    \item \textbf{Text-Only Modeling:} Achieves artificially high accuracy ($AUC > 0.90$) due to \textit{"Data Leakage / Proxy-Label Ambiguity"}, as ground-truth labels are derived directly from the reports using rule-based NLP taggers.
+    \item \textbf{Image-Only Modeling:} Suffers from \textit{"Shortcut Learning / Spurious Correlations"}, where deep convolutional neural networks (CNNs) learn to diagnose pathologies like pneumothorax by detecting external medical devices (e.g., chest drain tubes) rather than underlying pulmonary tissue anomalies.
+    \item \textbf{Multimodal Modeling:} Combines visual evidence with clinical text semantics through Fusion and Vision-Language Pretraining (VLP / Contrastive Learning) to mitigate the single-modality pitfalls.
+\end{enumerate}
+
+\section{Research Questions and Hypotheses}
+This thesis investigates three core research questions:
+\begin{itemize}
+    \item \textbf{RQ-1:} To what extent do vision-only deep learning models (CNNs vs. Vision Transformers) exhibit shortcut learning when evaluated via explainability maps (Grad-CAM vs. Attention maps)?
+    \item \textbf{RQ-2:} Does text-only pathology classification demonstrate genuine diagnostic reasoning or merely simulate proxy-labeler heuristics (data leakage)?
+    \item \textbf{RQ-3:} How effectively can Vision-Language Pretraining (VLP) and zero-shot classification resolve these single-modality limitations?
+\end{itemize}
+
+\section{Thesis Contributions}
+The primary contributions of this thesis are:
+\begin{enumerate}
+    \item A comprehensive 3-Pillar Exploratory Data Analysis (Image, Text/Label, Multimodal) across 261,137 chest radiographs from MIMIC-CXR.
+    \item A standardized comparative benchmarking framework evaluating Image-only, Text-only, Early/Late Fusion, and MedCLIP zero-shot architectures on identical dataset splits.
+    \item Explainability (XAI) and shortcut learning auditing via Grad-CAM saliency maps.
+\end{enumerate}

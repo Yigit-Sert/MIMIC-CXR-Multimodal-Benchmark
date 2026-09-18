@@ -1,0 +1,15 @@
+\chapter{Methodology and Architecture}
+\label{ch:methodology}
+
+\section{Vision Model Architecture (DenseNet-121 / Swin Transformer)}
+For visual classification, ImageNet-pretrained \textbf{DenseNet-121} and \textbf{Swin Transformer} models are employed. Independent Sigmoid activations with \textit{BCEWithLogitsLoss} are configured for multi-label classification across the Core 5 pathologies.
+
+\section{Text Model Architecture (ClinicalBERT)}
+The textual modality utilizes \textbf{ClinicalBERT}, pretrained on MIMIC clinical notes. Report sections (*Findings* and *Impression*) are tokenized and processed through sequence classification heads.
+
+\section{Multimodal Fusion Architecture}
+Multimodal integration is evaluated using two primary approaches:
+\begin{enumerate}
+    \item \textbf{Late Fusion:} Concatenating prediction embeddings from DenseNet-121 and ClinicalBERT via an MLP.
+    \item \textbf{MedCLIP Zero-Shot:} Cosine similarity matching between image embeddings and text prompts in a shared vector space aligned via InfoNCE contrastive loss.
+\end{enumerate}
